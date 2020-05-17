@@ -1,0 +1,32 @@
+{% extends "books/base.html"%}
+
+{% block title%}
+Books
+{% endblock%}
+
+{% block content %}
+  <div class="container">
+     <div class="row">
+{%for book in books_list%}
+
+
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+              <a href="{%url 'books:book_detail' pk=book.pk%}"> <div class="img__container"> <img src="{{book.image.url}}"  width="200" height="300" class="rounded mx-auto d-block" > </div> </a>
+             <div class="card-body">
+               <p class="card-text">{{book.title}}</p>
+               <div class="d-flex justify-content-between align-items-center">
+                 <div class="btn-group">
+                     <a href="{%url 'books:book_detail' pk=book.pk%}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Add to Cart</button>
+                 </div>
+                <small class="text">{{book.cost}} тг</small>
+               </div>
+             </div>
+           </div>
+        </div>
+
+{% endfor %}
+      </div>
+</div>
+{% endblock %}
